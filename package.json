@@ -1,0 +1,74 @@
+{
+    "name": "koot-helper",
+    "displayName": "koot-helper",
+    "description": "Features to help you developing Koot.js project",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.38.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "*",
+        "workspaceContains:koot.config.js"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.kootNewComponent",
+                "title": "在此处新建组件 (适用于 Koot.js)"
+            }
+        ],
+        "menus": {
+            "explorer/context": [
+                {
+                    "when": "explorerResourceIsFolder",
+                    "command": "extension.kootNewComponent",
+                    "group": "navigation"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "yarn run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "yarn run compile",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/glob": "^7.1.1",
+        "@types/mocha": "^5.2.6",
+        "@types/node": "^10.12.21",
+        "@types/vscode": "^1.38.0",
+        "eslint": "^6.3.0",
+        "eslint-config-koot": "^1.3.0",
+        "glob": "^7.1.4",
+        "husky": "^3.0.5",
+        "lint-staged": "^9.2.5",
+        "mocha": "^6.1.4",
+        "prettier": "^1.18.2",
+        "prettier-eslint": "^9.0.0",
+        "tslint": "^5.12.1",
+        "typescript": "^3.3.1",
+        "vscode-test": "^1.0.2"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.{a}": [
+            "eslint --fix",
+            "prettier --write",
+            "git add"
+        ],
+        "*.{b}": [
+            "prettier --write",
+            "git add"
+        ]
+    }
+}
