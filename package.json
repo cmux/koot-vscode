@@ -4,7 +4,7 @@
     "displayName": "Koot Helper",
     "description": "Features to help you developing Koot.js project",
     "private": true,
-    "version": "0.1.0",
+    "version": "0.1.1",
     "engines": {
         "vscode": "^1.38.0"
     },
