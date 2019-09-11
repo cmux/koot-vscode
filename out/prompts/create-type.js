@@ -1,3 +1,4 @@
+'use strict';
 var __awaiter =
     (this && this.__awaiter) ||
     function(thisArg, _arguments, P, generator) {
@@ -36,7 +37,6 @@ var __awaiter =
 Object.defineProperty(exports, '__esModule', { value: true });
 const vscode_1 = require('vscode');
 const jsx_extensions_1 = require('../commons/jsx-extensions');
-
 exports.default = (componentName, language) =>
     __awaiter(void 0, void 0, void 0, function*() {
         const { type = 'folder' } =

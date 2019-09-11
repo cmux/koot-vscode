@@ -1,7 +1,9 @@
 {
     "name": "koot-helper",
-    "displayName": "koot-helper",
+    "publisher": "koot-js",
+    "displayName": "Koot Helper",
     "description": "Features to help you developing Koot.js project",
+    "private": true,
     "version": "0.0.1",
     "engines": {
         "vscode": "^1.38.0"
@@ -31,12 +33,19 @@
             ]
         }
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cmux/koot-vscode"
+    },
+    "icon": "assets/logo.png",
     "scripts": {
         "vscode:prepublish": "yarn run compile",
         "compile": "tsc -p ./",
         "watch": "tsc -watch -p ./",
         "pretest": "yarn run compile",
-        "test": "node ./out/test/runTest.js"
+        "test": "node ./out/test/runTest.js",
+        "build": "yarn run vscode:prepublish && vsce package",
+        "publish": "yarn run build && vsce publish"
     },
     "devDependencies": {
         "@types/glob": "^7.1.1",
@@ -52,6 +61,7 @@
         "prettier": "^1.18.2",
         "prettier-eslint": "^9.0.0",
         "typescript": "^3.6.3",
+        "vsce": "^1.66.0",
         "vscode-test": "^1.2.0"
     },
     "husky": {
