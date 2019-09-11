@@ -6,6 +6,7 @@ import styles from 'NEED_CHANGE_IMPORT_STYLES';
 // Functional Component =======================================================
 
 const NEED_CHANGE_COMPONENT_NAME = extend({
+    /* NEED_CHANGE_ALL_EXTEND_OPTIONS_IN_COMMENTED */
     styles
 })(({ className, children, customProps, 'data-class-name': dataClassName }) => {
     return (

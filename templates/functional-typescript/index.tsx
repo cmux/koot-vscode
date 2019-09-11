@@ -12,6 +12,7 @@ interface ComponentProps {
 // Functional Component =======================================================
 
 const NEED_CHANGE_COMPONENT_NAME = extend<ComponentProps>({
+    /* NEED_CHANGE_ALL_EXTEND_OPTIONS_IN_COMMENTED */
     styles
 })(
     ({

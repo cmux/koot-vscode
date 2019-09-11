@@ -6,6 +6,7 @@ import styles from 'NEED_CHANGE_IMPORT_STYLES';
 // Component Class ============================================================
 
 @extend({
+    /* NEED_CHANGE_ALL_EXTEND_OPTIONS_IN_COMMENTED */
     styles
 })
 class NEED_CHANGE_COMPONENT_NAME extends React.Component {

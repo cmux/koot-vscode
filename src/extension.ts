@@ -100,7 +100,72 @@ const newComponent = async (uri: vscode.Uri): Promise<void> => {
     const contentJSX = (await vscode.workspace.fs.readFile(newFiles.jsx))
         .toString()
         .replace(/NEED_CHANGE_COMPONENT_NAME/g, `${needChange.componentName}`)
-        .replace(/'NEED_CHANGE_IMPORT_STYLES'/g, `'${needChange.importStyle}'`);
+        .replace(/'NEED_CHANGE_IMPORT_STYLES'/g, `'${needChange.importStyle}'`)
+        .replace(
+            /\/\* NEED_CHANGE_ALL_EXTEND_OPTIONS_IN_COMMENTED \*\//g,
+            language === 'typescript'
+                ? `/*
+    // 下例均为简易写法
+    // 更详细的释义和高级写法，请查阅文档
+    // https://koot.js.org/#/react
+
+    connect: (state: any): any => {
+        return {}
+    },
+
+    // 修改页面 title 和 meta 标签
+    // pageinfo 也可为 function
+    pageinfo: {
+        title: '页面标题',
+        metas: [
+            { description: '页面描述' }
+        ]
+    },
+
+    // 同构数据
+    // https://koot.js.org/#/react
+    data: (state: any, renderProps, dispatch) => {
+        return dispatch({
+            type: "ACTION",
+            payload: {}
+        });
+    },
+
+    // 控制组件的 SSR 行为
+    // 仅作用于 SSR 项目
+    ssr: true,
+    */`
+                : `/*
+    // 下例均为简易写法
+    // 更详细的释义和高级写法，请查阅文档
+    // https://koot.js.org/#/react
+
+    connect: (state) => {
+        return {}
+    },
+
+    // 修改页面 title 和 meta 标签
+    // pageinfo 也可为 function
+    pageinfo: {
+        title: '页面标题',
+        metas: [
+            { description: '页面描述' }
+        ]
+    },
+
+    // 同构数据
+    data: (state, renderProps, dispatch) => {
+        return dispatch({
+            type: "ACTION",
+            payload: {}
+        });
+    },
+
+    // 控制组件的 SSR 行为
+    // 仅作用于 SSR 项目
+    ssr: true,
+    */`
+        );
     fs.writeFileSync(newFiles.jsx.fsPath, contentJSX, 'utf-8');
 
     // 打开 JSX 文件
