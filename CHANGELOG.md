@@ -6,4 +6,22 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
--   Initial release
+## [0.1.2] - 2019-09-12
+
+### Added
+
+-   现在允许通过不输入内容来取消创建流程
+
+### Changed
+
+-   现在创建的组件名会经过驼峰处理
+
+## [0.1.1] - 2019-09-11
+
+### Changed
+
+-   现在会列出 `extend()` 高阶组件所有可传入的参数
+
+## [0.1.0] - 2019-09-11
+
+-   初始版本
