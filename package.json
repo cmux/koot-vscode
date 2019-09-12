@@ -45,7 +45,9 @@
         "pretest": "yarn run compile",
         "test": "node ./out/test/runTest.js",
         "build": "yarn run vscode:prepublish && vsce package",
-        "publish": "yarn run build && vsce publish"
+        "publish:major": "vsce publish major",
+        "publish:minor": "vsce publish minor",
+        "publish:patch": "vsce publish patch"
     },
     "devDependencies": {
         "@types/glob": "^7.1.1",
