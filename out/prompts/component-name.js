@@ -38,10 +38,11 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const vscode_1 = require('vscode');
 exports.default = () =>
     __awaiter(void 0, void 0, void 0, function*() {
-        return (
-            (yield vscode_1.window.showInputBox({
-                prompt: '请输入组件名'
-            })) || ''
-        );
+        const result = yield vscode_1.window.showInputBox({
+            prompt: '请输入组件名'
+        });
+        if (typeof result === 'undefined' || result === '')
+            throw new Error('NO_INPUT:COMPONENT_NAME');
+        return result;
     });
 //# sourceMappingURL=component-name.js.map

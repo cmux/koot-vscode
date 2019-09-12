@@ -7,7 +7,7 @@ type QuickPickComponentType = {
 };
 
 export default async (): Promise<ComponentType> => {
-    const { type = 'functional' } =
+    const { type } =
         (await window.showQuickPick<QuickPickComponentType>(
             [
                 {
@@ -23,6 +23,8 @@ export default async (): Promise<ComponentType> => {
                 placeHolder: '请选择组件类型'
             }
         )) || {};
+
+    if (typeof type === 'undefined') throw new Error('NO_INPUT:COMPONENT_TYPE');
 
     return type;
 };

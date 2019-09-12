@@ -7,7 +7,7 @@ type QuickPickLanguage = {
 };
 
 export default async (): Promise<Language> => {
-    const { language = 'javascript' } =
+    const { language } =
         (await window.showQuickPick<QuickPickLanguage>(
             [
                 {
@@ -23,6 +23,8 @@ export default async (): Promise<Language> => {
                 placeHolder: '请选择语言'
             }
         )) || {};
+
+    if (typeof language === 'undefined') throw new Error('NO_INPUT:LANGUAGE');
 
     return language;
 };

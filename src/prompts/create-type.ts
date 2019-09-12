@@ -12,7 +12,7 @@ export default async (
     componentName: string,
     language: Language
 ): Promise<CreateType> => {
-    const { type = 'folder' } =
+    const { type } =
         (await window.showQuickPick<QuickPickCreateType>(
             [
                 {
@@ -28,6 +28,8 @@ export default async (
                 placeHolder: '请选择创建方式'
             }
         )) || {};
+
+    if (typeof type === 'undefined') throw new Error('NO_INPUT:CREATE_TYPE');
 
     return type;
 };

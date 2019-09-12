@@ -38,7 +38,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const vscode_1 = require('vscode');
 exports.default = () =>
     __awaiter(void 0, void 0, void 0, function*() {
-        const { type = 'functional' } =
+        const { type } =
             (yield vscode_1.window.showQuickPick(
                 [
                     {
@@ -54,6 +54,8 @@ exports.default = () =>
                     placeHolder: '请选择组件类型'
                 }
             )) || {};
+        if (typeof type === 'undefined')
+            throw new Error('NO_INPUT:COMPONENT_TYPE');
         return type;
     });
 //# sourceMappingURL=component-type.js.map

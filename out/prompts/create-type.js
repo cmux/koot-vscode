@@ -39,7 +39,7 @@ const vscode_1 = require('vscode');
 const jsx_extensions_1 = require('../commons/jsx-extensions');
 exports.default = (componentName, language) =>
     __awaiter(void 0, void 0, void 0, function*() {
-        const { type = 'folder' } =
+        const { type } =
             (yield vscode_1.window.showQuickPick(
                 [
                     {
@@ -55,6 +55,8 @@ exports.default = (componentName, language) =>
                     placeHolder: '请选择创建方式'
                 }
             )) || {};
+        if (typeof type === 'undefined')
+            throw new Error('NO_INPUT:CREATE_TYPE');
         return type;
     });
 //# sourceMappingURL=create-type.js.map

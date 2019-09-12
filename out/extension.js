@@ -38,6 +38,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const vscode = require('vscode');
 const path = require('path');
 const fs = require('fs');
+const camelcase_1 = require('camelcase');
 const jsx_extensions_1 = require('./commons/jsx-extensions');
 const component_name_1 = require('./prompts/component-name');
 const component_type_1 = require('./prompts/component-type');
@@ -105,7 +106,7 @@ const newComponent = uri =>
         yield vscode.workspace.fs.copy(templates.styles, newFiles.styles);
         // 修改文件内容
         const needChange = {
-            componentName: name.substr(0, 1).toUpperCase() + name.substr(1),
+            componentName: camelcase_1.default(name, { pascalCase: true }),
             importStyle: ''
         };
         switch (createType) {

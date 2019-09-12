@@ -38,7 +38,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const vscode_1 = require('vscode');
 exports.default = () =>
     __awaiter(void 0, void 0, void 0, function*() {
-        const { language = 'javascript' } =
+        const { language } =
             (yield vscode_1.window.showQuickPick(
                 [
                     {
@@ -54,6 +54,8 @@ exports.default = () =>
                     placeHolder: '请选择语言'
                 }
             )) || {};
+        if (typeof language === 'undefined')
+            throw new Error('NO_INPUT:LANGUAGE');
         return language;
     });
 //# sourceMappingURL=language.js.map

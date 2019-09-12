@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
+import camelCase from 'camelcase';
 
 import jsxExtension from './commons/jsx-extensions';
 
@@ -82,7 +83,7 @@ const newComponent = async (uri: vscode.Uri): Promise<void> => {
         componentName: string;
         importStyle: string;
     } = {
-        componentName: name.substr(0, 1).toUpperCase() + name.substr(1),
+        componentName: camelCase(name, { pascalCase: true }),
         importStyle: ''
     };
     switch (createType) {
