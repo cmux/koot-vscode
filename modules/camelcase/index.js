@@ -1,3 +1,5 @@
+'use strict';
+
 const preserveCamelCase = string => {
     let isLastCharLower = false;
     let isLastCharUpper = false;
