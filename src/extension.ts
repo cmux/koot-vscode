@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
-import camelCase from 'camelcase';
 
+import camelCase from '../modules/camelcase';
 import jsxExtension from './commons/jsx-extensions';
 
 import promptComponentName from './prompts/component-name';

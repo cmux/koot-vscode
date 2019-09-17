@@ -4,6 +4,12 @@ All notable changes to the "koot-helper" extension will be documented in this fi
 
 ## [Unreleased]
 
+## [0.1.4] - 2019-09-17
+
+### Fixed
+
+-   修正无法启动的问题
+
 ## [0.1.2] - 2019-09-12
 
 ### Added

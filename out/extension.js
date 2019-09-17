@@ -38,7 +38,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const vscode = require('vscode');
 const path = require('path');
 const fs = require('fs');
-const camelcase_1 = require('camelcase');
+const camelcase_1 = require('../modules/camelcase');
 const jsx_extensions_1 = require('./commons/jsx-extensions');
 const component_name_1 = require('./prompts/component-name');
 const component_type_1 = require('./prompts/component-type');
