@@ -6,8 +6,7 @@ const modules = ['camelcase'];
 (async () => {
     const targetLibs = path.resolve(__dirname, '../modules');
 
-    await fs.remove(targetLibs);
-    await fs.ensureDir(targetLibs);
+    await fs.emptyDir(targetLibs);
 
     for (const m of modules) {
         await fs.copy(
