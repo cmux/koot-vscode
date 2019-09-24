@@ -16,9 +16,9 @@ interface ComponentProps {
     styles
 })
 class NEED_CHANGE_COMPONENT_NAME extends React.Component<
-    ComponentProps & ExtendedProps
+    ExtendedProps & ComponentProps
 > {
-    render(): JSX.Element {
+    render(): React.ReactNode {
         return (
             <div
                 className={this.props.className}

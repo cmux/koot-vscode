@@ -4,6 +4,12 @@ All notable changes to the "koot-helper" extension will be documented in this fi
 
 ## [Unreleased]
 
+## [0.1.6] - 2019-09-24
+
+### Changed
+
+-   根据 _Koot.js_ 新的 TS 定义，更新 TS 组件模板
+
 ## [0.1.5] - 2019-09-17
 
 ### Fixed
