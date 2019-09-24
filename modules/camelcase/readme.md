@@ -22,6 +22,7 @@
 $ npm install camelcase
 ```
 
+
 ## Usage
 
 ```js
@@ -36,10 +37,10 @@ camelCase('foo_bar');
 camelCase('Foo-Bar');
 //=> 'fooBar'
 
-camelCase('Foo-Bar', { pascalCase: true });
+camelCase('Foo-Bar', {pascalCase: true});
 //=> 'FooBar'
 
-camelCase('--foo.bar', { pascalCase: false });
+camelCase('--foo.bar', {pascalCase: false});
 //=> 'fooBar'
 
 camelCase('foo bar');
@@ -53,9 +54,10 @@ camelCase(process.argv[3]);
 camelCase(['foo', 'bar']);
 //=> 'fooBar'
 
-camelCase(['__foo__', '--bar'], { pascalCase: true });
+camelCase(['__foo__', '--bar'], {pascalCase: true});
 //=> 'FooBar'
 ```
+
 
 ## API
 
@@ -78,16 +80,19 @@ Default: `false`
 
 Uppercase the first character: `foo-bar` → `FooBar`
 
+
 ## Security
 
 To report a security vulnerability, please use the [Tidelift security contact](https://tidelift.com/security). Tidelift will coordinate the fix and disclosure.
 
+
 ## Related
 
--   [decamelize](https://github.com/sindresorhus/decamelize) - The inverse of this module
--   [uppercamelcase](https://github.com/SamVerschueren/uppercamelcase) - Like this module, but to PascalCase instead of camelCase
--   [titleize](https://github.com/sindresorhus/titleize) - Capitalize every word in string
--   [humanize-string](https://github.com/sindresorhus/humanize-string) - Convert a camelized/dasherized/underscored string into a humanized one
+- [decamelize](https://github.com/sindresorhus/decamelize) - The inverse of this module
+- [uppercamelcase](https://github.com/SamVerschueren/uppercamelcase) - Like this module, but to PascalCase instead of camelCase
+- [titleize](https://github.com/sindresorhus/titleize) - Capitalize every word in string
+- [humanize-string](https://github.com/sindresorhus/humanize-string) - Convert a camelized/dasherized/underscored string into a humanized one
+
 
 ## License
 
