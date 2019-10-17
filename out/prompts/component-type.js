@@ -17,8 +17,16 @@ exports.default = () => __awaiter(void 0, void 0, void 0, function* () {
             label: `类 (Class)`
         },
         {
+            type: 'class-pure',
+            label: `类 (Class) - PureComponent`
+        },
+        {
             type: 'functional',
             label: `函数组件 (Functional Component)`
+        },
+        {
+            type: 'functional-memo',
+            label: `函数组件 (Functional Component) - memo`
         }
     ], {
         placeHolder: '请选择组件类型'

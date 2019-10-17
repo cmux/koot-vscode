@@ -43,7 +43,7 @@ const newComponent = async (uri: vscode.Uri): Promise<void> => {
             path.resolve(
                 __dirname,
                 '..',
-                `templates/${type}-${language}/index.${ext}`
+                `templates/${type.split('-')[0]}-${language}/index.${ext}`
             )
         ),
         styles: vscode.Uri.file(
@@ -82,9 +82,13 @@ const newComponent = async (uri: vscode.Uri): Promise<void> => {
     const needChange: {
         componentName: string;
         importStyle: string;
+        classIsPure: boolean;
+        functionalUseMemo: boolean;
     } = {
         componentName: camelCase(name, { pascalCase: true }),
-        importStyle: ''
+        importStyle: '',
+        classIsPure: type === 'class-pure',
+        functionalUseMemo: type === 'functional-memo'
     };
     switch (createType) {
         case 'folder': {
@@ -166,6 +170,18 @@ const newComponent = async (uri: vscode.Uri): Promise<void> => {
     // 仅作用于 SSR 项目
     ssr: true,
     */`
+        )
+        .replace(
+            /React\.NEED_CHANGE_COMPONENT_TYPE/g,
+            needChange.classIsPure ? 'React.PureComponent' : 'React.Component'
+        )
+        .replace(
+            /\/\* NNED_CHANGE_USE_MEMO_START \*\//g,
+            needChange.functionalUseMemo ? 'React.memo(' : ''
+        )
+        .replace(
+            /\/\* NNED_CHANGE_USE_MEMO_END \*\//g,
+            needChange.functionalUseMemo ? ')' : ''
         );
     fs.writeFileSync(newFiles.jsx.fsPath, contentJSX, 'utf-8');
 

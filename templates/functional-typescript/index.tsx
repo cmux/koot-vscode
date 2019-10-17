@@ -14,24 +14,24 @@ interface ComponentProps {
 const NEED_CHANGE_COMPONENT_NAME = extend<ComponentProps>({
     /* NEED_CHANGE_ALL_EXTEND_OPTIONS_IN_COMMENTED */
     styles
-})(
+})(/* NNED_CHANGE_USE_MEMO_START */
     ({
         className,
         children,
         customProps,
-        'data-class-name': dataClassName
+        'data-class-name': classNameModule
     }): JSX.Element => {
         return (
             <div
                 className={className}
                 data-custom-props={customProps}
-                data-class-name={dataClassName}
+                data-class-name={classNameModule}
             >
                 <p>Hello world!</p>
                 {children}
             </div>
         );
     }
-);
+/* NNED_CHANGE_USE_MEMO_END */);
 
 export default NEED_CHANGE_COMPONENT_NAME;

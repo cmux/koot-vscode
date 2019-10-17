@@ -37,7 +37,7 @@ const newComponent = (uri) => __awaiter(void 0, void 0, void 0, function* () {
     const ext = jsx_extensions_1.default[language];
     //
     const templates = {
-        jsx: vscode.Uri.file(path.resolve(__dirname, '..', `templates/${type}-${language}/index.${ext}`)),
+        jsx: vscode.Uri.file(path.resolve(__dirname, '..', `templates/${type.split('-')[0]}-${language}/index.${ext}`)),
         styles: vscode.Uri.file(path.resolve(__dirname, '..', `templates/styles.less`))
     };
     const newFiles = {};
@@ -63,7 +63,9 @@ const newComponent = (uri) => __awaiter(void 0, void 0, void 0, function* () {
     // 修改文件内容
     const needChange = {
         componentName: camelcase_1.default(name, { pascalCase: true }),
-        importStyle: ''
+        importStyle: '',
+        classIsPure: type === 'class-pure',
+        functionalUseMemo: type === 'functional-memo'
     };
     switch (createType) {
         case 'folder': {
@@ -142,7 +144,10 @@ const newComponent = (uri) => __awaiter(void 0, void 0, void 0, function* () {
     // 控制组件的 SSR 行为
     // 仅作用于 SSR 项目
     ssr: true,
-    */`);
+    */`)
+        .replace(/React\.NEED_CHANGE_COMPONENT_TYPE/g, needChange.classIsPure ? 'React.PureComponent' : 'React.Component')
+        .replace(/\/\* NNED_CHANGE_USE_MEMO_START \*\//g, needChange.functionalUseMemo ? 'React.memo(' : '')
+        .replace(/\/\* NNED_CHANGE_USE_MEMO_END \*\//g, needChange.functionalUseMemo ? ')' : '');
     fs.writeFileSync(newFiles.jsx.fsPath, contentJSX, 'utf-8');
     // 打开 JSX 文件
     yield vscode.window.showTextDocument(newFiles.jsx);

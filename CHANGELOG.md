@@ -4,6 +4,14 @@ All notable changes to the "koot-helper" extension will be documented in this fi
 
 ## [Unreleased]
 
+## [0.2.0] - 2019-10-17
+
+### 新特性
+
+-   新的可选组件类型
+    -   `类 (Class) - PureComponent`
+    -   `函数组件 (Functional Component) - memo`
+
 ## [0.1.6] - 2019-09-24
 
 ### Changed
