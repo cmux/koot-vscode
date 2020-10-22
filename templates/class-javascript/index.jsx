@@ -1,4 +1,4 @@
-import React from 'react';
+import NEED_CHANGE_REACT_IMPORT_COMMA{ NEED_CHANGE_COMPONENT_TYPE } from 'react';
 import { extend } from 'koot';
 
 import styles from 'NEED_CHANGE_IMPORT_STYLES';
@@ -9,7 +9,7 @@ import styles from 'NEED_CHANGE_IMPORT_STYLES';
     /* NEED_CHANGE_ALL_EXTEND_OPTIONS_IN_COMMENTED */
     styles
 })
-class NEED_CHANGE_COMPONENT_NAME extends React.NEED_CHANGE_COMPONENT_TYPE {
+class NEED_CHANGE_COMPONENT_NAME extends NEED_CHANGE_COMPONENT_TYPE {
     render() {
         return (
             <div

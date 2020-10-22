@@ -1,4 +1,4 @@
-import React from 'react';
+import NEED_CHANGE_REACT_IMPORT_COMMA{ ReactNode, NEED_CHANGE_COMPONENT_TYPE } from 'react';
 import { extend, ExtendedProps } from 'koot';
 
 import styles from 'NEED_CHANGE_IMPORT_STYLES';
@@ -15,10 +15,10 @@ interface ComponentProps {
     /* NEED_CHANGE_ALL_EXTEND_OPTIONS_IN_COMMENTED */
     styles
 })
-class NEED_CHANGE_COMPONENT_NAME extends React.NEED_CHANGE_COMPONENT_TYPE<
+class NEED_CHANGE_COMPONENT_NAME extends NEED_CHANGE_COMPONENT_TYPE<
     ExtendedProps & ComponentProps
 > {
-    render(): React.ReactNode {
+    render(): ReactNode {
         return (
             <div
                 className={this.props.className}

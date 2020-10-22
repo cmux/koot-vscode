@@ -4,6 +4,13 @@ All notable changes to the "koot-helper" extension will be documented in this fi
 
 ## [Unreleased]
 
+## [0.3.0] - 2020-10-22
+
+### 新特性
+
+-   支持创建支持新版 _JSX_ 转译器的 _React_ 组件
+    -   会尝试检查当前项目中的 _React_ 版本，如果为 17+，会默认创建新版本组件
+
 ## [0.2.0] - 2019-10-17
 
 ### 新特性

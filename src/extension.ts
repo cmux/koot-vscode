@@ -35,6 +35,28 @@ const newComponent = async (uri: vscode.Uri): Promise<void> => {
     const language = await promptLanguage();
     const createType = await promptCreateType(name, language);
     const ext = jsxExtension[language];
+    const newJSXTransform = await (async (): Promise<boolean> => {
+        if (!Array.isArray(vscode.workspace.workspaceFolders)) return false;
+        const fileReactPackage = vscode.Uri.parse(
+            vscode.workspace.workspaceFolders[0].uri.path +
+                '/node_modules/react/package.json'
+        );
+
+        try {
+            const reactPackage = JSON.parse(
+                (await vscode.workspace.fs.readFile(
+                    fileReactPackage
+                )).toString()
+            );
+            const major = reactPackage.version
+                ? parseInt(reactPackage.version.split('.')[0])
+                : 17;
+            return major >= 17;
+        } catch (e) {
+            console.error(e);
+            return true;
+        }
+    })();
 
     //
 
@@ -102,14 +124,30 @@ const newComponent = async (uri: vscode.Uri): Promise<void> => {
         default: {
         }
     }
-    const contentJSX = (await vscode.workspace.fs.readFile(newFiles.jsx))
-        .toString()
-        .replace(/NEED_CHANGE_COMPONENT_NAME/g, `${needChange.componentName}`)
-        .replace(/'NEED_CHANGE_IMPORT_STYLES'/g, `'${needChange.importStyle}'`)
-        .replace(
-            /\/\* NEED_CHANGE_ALL_EXTEND_OPTIONS_IN_COMMENTED \*\//g,
-            language === 'typescript'
-                ? `/*
+    const contentJSX =
+        (/^functional/.test(type)
+            ? needChange.functionalUseMemo
+                ? newJSXTransform
+                    ? `import { memo } from 'react';\n`
+                    : `import React, { memo } from 'react';\n`
+                : newJSXTransform
+                ? ''
+                : `import React from 'react';\n`
+            : '') +
+        (await vscode.workspace.fs.readFile(newFiles.jsx))
+            .toString()
+            .replace(
+                /NEED_CHANGE_COMPONENT_NAME/g,
+                `${needChange.componentName}`
+            )
+            .replace(
+                /'NEED_CHANGE_IMPORT_STYLES'/g,
+                `'${needChange.importStyle}'`
+            )
+            .replace(
+                /\/\* NEED_CHANGE_ALL_EXTEND_OPTIONS_IN_COMMENTED \*\//g,
+                language === 'typescript'
+                    ? `/*
     // 下例均为简易写法
     // 更详细的释义和高级写法，请查阅文档
     // https://koot.js.org/#/react
@@ -140,7 +178,7 @@ const newComponent = async (uri: vscode.Uri): Promise<void> => {
     // 仅作用于 SSR 项目
     ssr: true,
     */`
-                : `/*
+                    : `/*
     // 下例均为简易写法
     // 更详细的释义和高级写法，请查阅文档
     // https://koot.js.org/#/react
@@ -170,19 +208,23 @@ const newComponent = async (uri: vscode.Uri): Promise<void> => {
     // 仅作用于 SSR 项目
     ssr: true,
     */`
-        )
-        .replace(
-            /React\.NEED_CHANGE_COMPONENT_TYPE/g,
-            needChange.classIsPure ? 'React.PureComponent' : 'React.Component'
-        )
-        .replace(
-            /\/\* NNED_CHANGE_USE_MEMO_START \*\//g,
-            needChange.functionalUseMemo ? 'React.memo(' : ''
-        )
-        .replace(
-            /\/\* NNED_CHANGE_USE_MEMO_END \*\//g,
-            needChange.functionalUseMemo ? ')' : ''
-        );
+            )
+            .replace(
+                /NEED_CHANGE_REACT_IMPORT_COMMA{/g,
+                newJSXTransform ? '{' : `React, {`
+            )
+            .replace(
+                / NEED_CHANGE_COMPONENT_TYPE(.)/g,
+                needChange.classIsPure ? ' PureComponent$1' : ' Component$1'
+            )
+            .replace(
+                /\/\* NNED_CHANGE_USE_MEMO_START \*\//g,
+                needChange.functionalUseMemo ? 'memo(' : ''
+            )
+            .replace(
+                /\/\* NNED_CHANGE_USE_MEMO_END \*\//g,
+                needChange.functionalUseMemo ? ')' : ''
+            );
     fs.writeFileSync(newFiles.jsx.fsPath, contentJSX, 'utf-8');
 
     // 打开 JSX 文件
