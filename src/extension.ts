@@ -44,9 +44,9 @@ const newComponent = async (uri: vscode.Uri): Promise<void> => {
 
         try {
             const reactPackage = JSON.parse(
-                (await vscode.workspace.fs.readFile(
-                    fileReactPackage
-                )).toString()
+                (
+                    await vscode.workspace.fs.readFile(fileReactPackage)
+                ).toString()
             );
             const major = reactPackage.version
                 ? parseInt(reactPackage.version.split('.')[0])
@@ -70,7 +70,7 @@ const newComponent = async (uri: vscode.Uri): Promise<void> => {
         ),
         styles: vscode.Uri.file(
             path.resolve(__dirname, '..', `templates/styles.less`)
-        )
+        ),
     };
     const newFiles: {
         [file: string]: vscode.Uri;
@@ -110,7 +110,7 @@ const newComponent = async (uri: vscode.Uri): Promise<void> => {
         componentName: camelCase(name, { pascalCase: true }),
         importStyle: '',
         classIsPure: type === 'class-pure',
-        functionalUseMemo: type === 'functional-memo'
+        functionalUseMemo: type === 'functional-memo',
     };
     switch (createType) {
         case 'folder': {

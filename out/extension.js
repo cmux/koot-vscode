@@ -1,4 +1,23 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,16 +27,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const vscode = require("vscode");
-const path = require("path");
-const fs = require("fs");
-const camelcase_1 = require("../modules/camelcase");
-const jsx_extensions_1 = require("./commons/jsx-extensions");
-const component_name_1 = require("./prompts/component-name");
-const component_type_1 = require("./prompts/component-type");
-const language_1 = require("./prompts/language");
-const create_type_1 = require("./prompts/create-type");
+exports.deactivate = exports.activate = void 0;
+const vscode = __importStar(require("vscode"));
+const path = __importStar(require("path"));
+const fs = __importStar(require("fs"));
+const camelcase_1 = __importDefault(require("../modules/camelcase"));
+const jsx_extensions_1 = __importDefault(require("./commons/jsx-extensions"));
+const component_name_1 = __importDefault(require("./prompts/component-name"));
+const component_type_1 = __importDefault(require("./prompts/component-type"));
+const language_1 = __importDefault(require("./prompts/language"));
+const create_type_1 = __importDefault(require("./prompts/create-type"));
 // ============================================================================
 function activate(context) {
     const commandNewComponent = vscode.commands.registerCommand('extension.kootNewComponent', newComponent);
@@ -55,7 +78,7 @@ const newComponent = (uri) => __awaiter(void 0, void 0, void 0, function* () {
     //
     const templates = {
         jsx: vscode.Uri.file(path.resolve(__dirname, '..', `templates/${type.split('-')[0]}-${language}/index.${ext}`)),
-        styles: vscode.Uri.file(path.resolve(__dirname, '..', `templates/styles.less`))
+        styles: vscode.Uri.file(path.resolve(__dirname, '..', `templates/styles.less`)),
     };
     const newFiles = {};
     switch (createType) {
@@ -82,7 +105,7 @@ const newComponent = (uri) => __awaiter(void 0, void 0, void 0, function* () {
         componentName: camelcase_1.default(name, { pascalCase: true }),
         importStyle: '',
         classIsPure: type === 'class-pure',
-        functionalUseMemo: type === 'functional-memo'
+        functionalUseMemo: type === 'functional-memo',
     };
     switch (createType) {
         case 'folder': {

@@ -17,15 +17,15 @@ export default async (
             [
                 {
                     type: 'folder',
-                    label: `创建到子文件夹中 (./${componentName}/index.${jsxExtension[language]})`
+                    label: `创建到子文件夹中 (./${componentName}/index.${jsxExtension[language]})`,
                 },
                 {
                     type: 'file',
-                    label: `创建到当前文件夹中 (./${componentName}.${jsxExtension[language]})`
-                }
+                    label: `创建到当前文件夹中 (./${componentName}.${jsxExtension[language]})`,
+                },
             ],
             {
-                placeHolder: '请选择创建方式'
+                placeHolder: '请选择创建方式',
             }
         )) || {};
 
