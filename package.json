@@ -49,6 +49,7 @@
         "publish:major": "vsce publish major",
         "publish:minor": "vsce publish minor",
         "publish:patch": "vsce publish patch",
+        "login": "vsce login koot-js",
         "up": "yarn upgrade-interactive --latest"
     },
     "dependencies": {
