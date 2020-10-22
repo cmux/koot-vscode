@@ -6,7 +6,7 @@
     "private": true,
     "version": "0.2.0",
     "engines": {
-        "vscode": "^1.39.0"
+        "vscode": "^1.50.0"
     },
     "categories": [
         "Other"
